@@ -1,0 +1,25 @@
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="userId">User ID:</label>
+      <input type="number" id="userId" formControlName="userId" />
+    </div>
+  
+    <div>
+      <label for="title">Title:</label>
+      <input type="text" id="title" formControlName="title" />
+      <div *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched">
+        Title is required and should be at most 100 characters long.
+      </div>
+    </div>
+  
+    <div>
+      <label for="body">Body:</label>
+      <textarea id="body" formControlName="body"></textarea>
+      <div *ngIf="postForm.get('body')?.invalid && postForm.get('body')?.touched">
+        Body is required and should be at most 500 characters long.
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="postForm.invalid">Add Post</button>
+  </form>
+  
